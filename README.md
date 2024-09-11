@@ -39,3 +39,4 @@ Performance Monitoring 도구: Prometheus(모니터링,경고), Graphana(시각�
 Trigger 도구:  Airflow
 
 DB: PostgreSQL필수 1)최우선목표 2)2차목표
+
