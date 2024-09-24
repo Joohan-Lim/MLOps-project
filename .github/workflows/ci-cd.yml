@@ -3,29 +3,29 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main  # main 브랜치에 푸시될 때 워크플로우 실행
+      - main  # main 브랜치에 푸시될 때 실행
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2  # 코드를 체크아웃
+      # 1. 코드 체크아웃
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v2  # Docker Buildx 설정
+      # 2. DockerHub 로그인
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v2  # 도커 허브에 로그인
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}  # Secrets에서 가져온 사용자 이름
-        password: ${{ secrets.DOCKER_PASSWORD }}  # Secrets에서 가져온 비밀번호
-
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v2  # 도커 이미지 빌드 및 푸시
-      with:
-        context: .  # 현재 디렉토리를 컨텍스트로 사용
-        push: true  # 빌드 후 이미지를 푸시
-        tags: limjoohan/mlops_project:latest  # 도커 허브 리포지토리 태그
+      # 3. Docker 이미지 빌드 및 푸시
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: <your-dockerhub-username>/<repository-name>:latest
 
