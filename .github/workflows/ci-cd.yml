@@ -27,5 +27,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: <your-dockerhub-username>/<repository-name>:latest
+          tags: limjoohan/mlops_project:latest
 
