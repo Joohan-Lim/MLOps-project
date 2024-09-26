@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: myusername/myapp:latest  # DockerHub에서 푸시된 이미지 사용
+        image: limjoohan/mlops_project:latest  # DockerHub에서 푸시된 이미지 사용
         ports:
         - containerPort: 3000
